@@ -4,6 +4,26 @@ tg = window.Telegram.WebApp;
 
 $(document).ready(function() {
     console.log('ready')
+
+    $('.card-date').on('input', function() {
+        // Ограничение ввода до 4 символов
+        if ($(this).val().length > 6) {
+            $(this).val($(this).val().substr(0, 6));
+          }
+  
+        // Добавление '/' после первых двух символов
+        if ($(this).val().length >= 3 && $(this).val().charAt(2) !== '/') {
+            $(this).val($(this).val().substr(0, 2) + '/' + $(this).val().substr(2));
+        }
+        if ($(this).val().length <= 2 && $(this).val().charAt(2) !== '/') {
+            $(this).val($(this).val().substr(0, 2) + $(this).val().substr(2));
+        }
+      });
+      $(document).on("change keyup input click", "input[type='text']", function() {
+        if(this.value.match(/[^0-9\/]/g)){
+            this.value = this.value.replace(/[^0-9\/]/g, "");
+        };
+    });
 })
 
 $('li button').on('click', function() {
@@ -25,6 +45,8 @@ $('li button').on('click', function() {
     $('.overflow').css('display', 'block')
     $('.product-info').css('display', 'flex')
     $('.products').css('filter','blur(3px)')
+    $('#acceptBuy').css('background', 'gray')
+    $('#acceptBuy').prop('disabled', true)
 
     product_list = product;
 
@@ -40,10 +62,18 @@ $('.overflow').click(function(){
     $('.product-info').css('display', 'none')
     $('.products').css('filter','none')
     $('.payment-form').css('display', 'none')
+    $('.payment').css('display', 'none')
     $('.selection-payment li').css('background', '#383838');
 })
 
+
 $('#acceptBuy').click(function() {
+    $('.product-info').css('display', 'none')
+    $('.payment').css('display', 'grid')
+    $('.payment input').val('')
+})
+
+$('#acceptPay').click(function() {
     $('.product-info').css('display', 'none')
     $('.payment-form').css('display', 'flex')
     $('.payment-form p').html('Ваш ключ для игры ' + product_list.name + ':')
@@ -52,10 +82,12 @@ $('#acceptBuy').click(function() {
 
 $('.selection-payment li').on('click', function() {
     $('.selection-payment li').css('background', '#383838');
-    
     $(this).css('background', '#5b7da6')
     $('#acceptPayment').css('background', '#51B452')
     $('#acceptPayment').html('Оплата через ' + $(this).html())
+
+    $('#acceptBuy').css('background', '#51b452')
+    $('#acceptBuy').prop('disabled', false)
 
 });
 
