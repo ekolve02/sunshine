@@ -78,6 +78,7 @@ $('#acceptBuy').click(function() {
 $('#acceptPay').click(function() {
     $('.product-info').css('display', 'none')
     $('.payment-form').css('display', 'flex')
+    $('.payment').css('display', 'none')
     $('.payment-form p').html('Ваш ключ для игры ' + product_list.name + ':')
     $('.game-key').html(generateRandomNumber())
 })
