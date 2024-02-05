@@ -45,6 +45,7 @@ $('li button').on('click', function() {
     $('.overflow').css('display', 'block')
     $('.product-info').css('display', 'flex')
     $('.products').css('filter','blur(3px)')
+    $('body').css('overflow', 'hidden')
     $('#acceptBuy').css('background', 'gray')
     $('#acceptBuy').prop('disabled', true)
 
@@ -64,6 +65,7 @@ $('.overflow').click(function(){
     $('.payment-form').css('display', 'none')
     $('.payment').css('display', 'none')
     $('.selection-payment li').css('background', '#383838');
+    $('body').css('overflow', 'auto')
 })
 
 
