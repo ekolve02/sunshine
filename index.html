@@ -47,12 +47,18 @@
         <div class="selection-payment">
             <span>Метод оплаты</span>
             <ul>
-                <li>LAVA</li>
-                <li>FreeKassa</li>
-                <li>Юмани</li>
+                <li id="lava">LAVA</li>
+                <li id="freekassa">FreeKassa</li>
+                <li id="umoney">Юмани</li>
             </ul>
         </div>
         <button id="acceptBuy">Перейти к оплате</button>
+    </div>
+    <div class="payment">
+        <input type="text" id="numericInput" class="card-number" style="grid-area: num;" placeholder="Номер карты" maxlength="16">
+        <input type="text" id="numericInput" class="card-date" style="grid-area: date;" placeholder="ММ/ГГ" maxlength="5">
+        <input type="text" id="numericInput" class="card-cvv" style="grid-area: cvv;" placeholder="CVV" maxlength="3">   
+        <button id="acceptPay">Оплатить</button>
     </div>
     <div class="payment-form">
         <h1>Спасибо за покупку!</h1>
